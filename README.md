@@ -28,7 +28,7 @@
 - *DisplayPort*: best option, has signal since start of boot and should work out-of-box; if your display only has HDMI connectors, a DisplayPort to HDMI cable is recommended, note that the only confirmed-working model so far is DP111 by Ugreen (PS176 chipset).
 - *HDMI*: can get working with extra hack for multi-screen setup; only receives signal after entring MacOS.
 
-## Clover
+## config.plist
 - ACPI
     - DSDT
         - Change GFX0 to IGPU
@@ -47,35 +47,25 @@
     - DropTables
         - DMAR
 
-            > This prevents some issues with Vt-d; which is PCI passthrough for VMs, and not very functional (if at all?) on Hackintoshes.
-
-            (Reference: https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#drop-tables)
+            > This prevents some issues with Vt-d; which is PCI passthrough for VMs, and not very functional (if at all?) on Hackintoshes. ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#drop-tables))
 
         - MATS
 
-            > With High Sierra on up this table is parsed, and can sometimes contain unprintable characters that can lead to a kernel panic.
-
-            (Reference: https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#drop-tables)
+            > With High Sierra on up this table is parsed, and can sometimes contain unprintable characters that can lead to a kernel panic. ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#drop-tables))
 
 - Boot
     - Arguments
         - `slide=0`
 
-            > This works hand in hand with `EmuVariableUEFI-64.efi` to solve sleep/wake-up issue. Remember to `Install RC Scripts to Target Volume` when installing Clover, otherwise your Clover boot screen might have trouble counting down automatically.
-
-            (Reference: https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/)
+            > This works hand in hand with `EmuVariableUEFI-64.efi` to solve sleep/wake-up issue. Remember to `Install RC Scripts to Target Volume` when installing Clover, otherwise your Clover boot screen might have trouble counting down automatically. ([Reference](https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/))
 
         - `darkwake=0`
 
-            > This enables wake from sleep with one keystroke.
-
-            (Reference: https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/)
+            > This enables wake from sleep with one keystroke. ([Reference](https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/))
 
         - `dart=0`
 
-            > This is just an extra layer of protection against Vt-d issues.
-
-            (Reference: https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#arguments)
+            > This is just an extra layer of protection against Vt-d issues. ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#arguments))
 
         - `shikigva=40`
 
@@ -85,7 +75,7 @@
 
             > 32 - ReplaceBoardID - replaces board-id used by AppleGVA by a different board-id.
 
-            (Reference: https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#arguments)
+            > ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/coffee-lake#arguments))
 - Devices
     - Audio
         - Inject: 3
@@ -133,3 +123,34 @@
 - SystemParameters
     - InjectKexts: Yes
     - InjectSystemID: True
+
+## kexts
+
+- Other
+
+> All of the following kexts are available on this [repo](https://1drv.ms/f/s!AiP7m5LaOED-m-J8-MLJGnOgAqnjGw) courtesy of Goldfish64. Each kext is auto-built whenever a new commit is made. ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/gathering-kexts))
+
+Kext | Version | Purpose
+---- | ------- | -------
+AppleALC.kext | 1.3.7 | Driver for Realtek ALC233
+IntelMausiEthernet.kext | 2.5.0d0 | Driver for Intel® Gigabit I219V
+Lilu.kext | 1.3.5 | Fundation kext for many other kexts
+WhateverGreen.kext | 1.2.8 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
+VirtualSMC.kext | 1.0.3 | SMC emulator, vital to booting hackintosh
+SMCProcessor.kext | 1.0.3 | Companion kext for `VirtualSMC.kext`
+SMCSuperIO.kext | 1.0.3 | Companion kext for `VirtualSMC.kext`
+USBPorts.kext | - | Customized kext to work around USB port limit
+
+## drivers64UEFI
+
+> Install via `Clover` or `Clover Configurator`
+
+Driver | Purpose
+------ | -------
+ApfsDriverLoader-64.efi | Allows Clover to see and boot from APFS volumes by loading apfs.efi from ApfsContainer located on block device (if using AptioMemoryFix as well, requires R21 or newer) ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
+HFSPlus.efi | Required for Clover to see and boot HFS+ volumes ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
+AptioMemoryFix-64.efi | The new hotness that includes NVRAM fixes, as well as better memory management ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
+EmuVariableUefi-64.efi | Enable nvram on mobos without native support
+FSInject-64.efi | Responsible for Clover's kext injection into kernelcache
+OsxFatBinaryDrv-64.efi | Responsible to override for fat binary loading on UEFI where fat binary support is not present
+CsmVideoDxe-64.efi | Responsible to unlock VBIOS and make available "hidden" resolutions while UEFI booting
