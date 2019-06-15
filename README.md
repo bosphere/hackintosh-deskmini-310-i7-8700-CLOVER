@@ -42,7 +42,7 @@
         - Generate
             - PluginType: True
 
-                This enables native power management.
+                > This enables native power management.
 
     - DropTables
         - DMAR
@@ -61,13 +61,13 @@
     - Arguments
         - `slide=0`
 
-            This works hand in hand with `EmuVariableUEFI-64.efi` to solve sleep/wake-up issue. Remember to `Install RC Scripts to Target Volume` when installing Clover, otherwise your Clover boot screen might have trouble counting down automatically.
+            > This works hand in hand with `EmuVariableUEFI-64.efi` to solve sleep/wake-up issue. Remember to `Install RC Scripts to Target Volume` when installing Clover, otherwise your Clover boot screen might have trouble counting down automatically.
 
             (Reference: https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/)
 
         - `darkwake=0`
 
-            This enables wake from sleep with one keystroke.
+            > This enables wake from sleep with one keystroke.
 
             (Reference: https://www.tonymacx86.com/threads/success-ongoing-status-of-designare-z390-with-i7-9700k.266065/)
 
@@ -95,7 +95,7 @@
             - layout-id: HAAAAA==
         - PciRoot(0x0)/Pci(0x2,0x0)
             
-            Enable HDMI output and resolve other iGPU issues.
+            > Enable HDMI output and resolve other iGPU issues.
 
             - AAPL,ig-platform-id: BwCbPg==
             - device-id: mz4AAA==
