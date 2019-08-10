@@ -132,13 +132,13 @@
 
 Kext | Version | Purpose
 ---- | ------- | -------
-AppleALC.kext | 1.3.7 | Driver for Realtek ALC233
-IntelMausiEthernet.kext | 2.5.0d0 | Driver for Intel® Gigabit I219V
-Lilu.kext | 1.3.5 | Fundation kext for many other kexts
-WhateverGreen.kext | 1.2.8 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
-VirtualSMC.kext | 1.0.3 | SMC emulator, vital to booting hackintosh
-SMCProcessor.kext | 1.0.3 | Companion kext for `VirtualSMC.kext`
-SMCSuperIO.kext | 1.0.3 | Companion kext for `VirtualSMC.kext`
+AppleALC.kext | 1.4.0 | Driver for Realtek ALC233
+IntelMausiEthernet.kext | 2.5.0d14 | Driver for Intel® Gigabit I219V
+Lilu.kext | 1.3.8 | Fundation kext for many other kexts
+WhateverGreen.kext | 1.3.1 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
+VirtualSMC.kext | 1.0.7 | SMC emulator, vital to booting hackintosh
+SMCProcessor.kext | 1.0.7 | Companion kext for `VirtualSMC.kext`
+SMCSuperIO.kext | 1.0.7 | Companion kext for `VirtualSMC.kext`
 USBPorts.kext | - | Customized kext to work around USB port limit
 
 ## drivers64UEFI
