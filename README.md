@@ -34,10 +34,7 @@ Version: v5112
 ## config.plist
 - ACPI
     - DSDT
-        - Change GFX0 to IGPU
-        - Change HECI to IMEI
         - Change SAT0 to SATA
-        - Change HDAS to HDEF
         - Change EHC1 to EH01
         - Change EHC2 to EH02
         - Change XHCI to XHC
