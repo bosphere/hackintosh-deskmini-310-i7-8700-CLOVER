@@ -28,6 +28,9 @@
 - *DisplayPort*: best option, has signal since start of boot and should work out-of-box; if your display only has HDMI connectors, a DisplayPort to HDMI cable is recommended, note that the only confirmed-working model so far is DP111 by Ugreen (PS176 chipset).
 - *HDMI*: can get working with extra hack for multi-screen setup; only receives signal after entring MacOS.
 
+## Clover
+Version: v5112
+
 ## config.plist
 - ACPI
     - DSDT
@@ -132,25 +135,25 @@
 
 Kext | Version | Purpose
 ---- | ------- | -------
-AppleALC.kext | 1.4.0 | Driver for Realtek ALC233
+AppleALC.kext | 1.5.1 | Driver for Realtek ALC233
 IntelMausiEthernet.kext | 2.5.0d14 | Driver for Intel® Gigabit I219V
-Lilu.kext | 1.3.8 | Fundation kext for many other kexts
-WhateverGreen.kext | 1.3.1 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
-VirtualSMC.kext | 1.0.7 | SMC emulator, vital to booting hackintosh
-SMCProcessor.kext | 1.0.7 | Companion kext for `VirtualSMC.kext`
-SMCSuperIO.kext | 1.0.7 | Companion kext for `VirtualSMC.kext`
+Lilu.kext | 1.4.5 | Fundation kext for many other kexts
+WhateverGreen.kext | 1.4.0 | A composite kext that addresses graphics related issues, requires `Lilu.kext`
+VirtualSMC.kext | 1.1.4 | SMC emulator, vital to booting hackintosh
+SMCProcessor.kext | 1.1.4 | Companion kext for `VirtualSMC.kext`
+SMCSuperIO.kext | 1.1.4 | Companion kext for `VirtualSMC.kext`
 USBPorts.kext | - | Customized kext to work around USB port limit
 
-## drivers64UEFI
+## drivers/UEFI
 
 > Install via `Clover` or `Clover Configurator`
 
 Driver | Purpose
 ------ | -------
-ApfsDriverLoader-64.efi | Allows Clover to see and boot from APFS volumes by loading apfs.efi from ApfsContainer located on block device (if using AptioMemoryFix as well, requires R21 or newer) ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
+ApfsDriverLoader.efi | Allows Clover to see and boot from APFS volumes by loading apfs.efi from ApfsContainer located on block device (if using AptioMemoryFix as well, requires R21 or newer) ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
 HFSPlus.efi | Required for Clover to see and boot HFS+ volumes ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
-AptioMemoryFix-64.efi | The new hotness that includes NVRAM fixes, as well as better memory management ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
-EmuVariableUefi-64.efi | Enable nvram on mobos without native support
-FSInject-64.efi | Responsible for Clover's kext injection into kernelcache
-OsxFatBinaryDrv-64.efi | Responsible to override for fat binary loading on UEFI where fat binary support is not present
-CsmVideoDxe-64.efi | Responsible to unlock VBIOS and make available "hidden" resolutions while UEFI booting
+AptioMemoryFix.efi | The new hotness that includes NVRAM fixes, as well as better memory management ([Reference](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/clover-setup#installing-clover))
+EmuVariableUefi.efi | Enable nvram on mobos without native support
+FSInject.efi | Responsible for Clover's kext injection into kernelcache
+OsxFatBinaryDrv.efi | Responsible to override for fat binary loading on UEFI where fat binary support is not present
+CsmVideoDxe.efi | Responsible to unlock VBIOS and make available "hidden" resolutions while UEFI booting
