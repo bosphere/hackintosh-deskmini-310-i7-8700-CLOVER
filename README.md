@@ -1,4 +1,4 @@
-# hackintosh-deskmini-310-i7-8700
+# hackintosh-deskmini-310-i7-8700-CLOVER
 
 ## Hardware
 - Case & Mobo: ASRock DeskMini H310
